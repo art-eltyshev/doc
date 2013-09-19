@@ -4,65 +4,71 @@ HOST: https://api.edemos.org
 # edemos public API
 Public API
 
-# Votings
+## Contents
+1. [Votings](#Votings)
+2. [Votes](#Votes)
+3. [Apps](#Apps)
+
+<a name="Votings"></a>
+# 1. Votings
 
 ## /votings
 
 + Headers
 
-        Authorization: Client {client_token}
+		Authorization: Client {client_token}
 
 ### Retrieve votings [GET]
 
 + Parameters
 
-    + offset = '0' (optional, number) ... The offset from beginning (the newest votings).
-    + limit = '5' (optional, number) ... The maximum number of results to return.
+	+ offset = '0' (optional, number) ... The offset from beginning (the newest votings).
+	+ limit = '5' (optional, number) ... The maximum number of results to return.
 
 + Request
-    
-    + Headers
+	
+	+ Headers
 
-            Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
 
 + Response 200 (application/json)
 
-        {
-            "count": 2,
-            "votings":[
-                {
-                    "id": 12321,
-                    "title": "Выборы Перзидента РФ"
-                },
-                {
-                    "id": 12322,
-                    "title": "Выборы в КС"
-                }
-                ]
-        }
+		{
+			"count": 2,
+			"votings":[
+				{
+					"id": 12321,
+					"title": "Выборы Перзидента РФ"
+				},
+				{
+					"id": 12322,
+					"title": "Выборы в КС"
+				}
+				]
+		}
 
 ### Create new voting [POST]
 
 + Parameters
 
-    + title (required, string) ... Voting title.
-    + link (required, string) ... Link to voting page.
-    + start_date
-    + end_date
-    + max_selection
-    + has_log
-    + anonymous
-    + refrain
-    + realtime_result
-    + custom_options
+	+ title (required, string) ... Voting title.
+	+ link (required, string) ... Link to voting page.
+	+ start_date
+	+ end_date
+	+ max_selection
+	+ has_log
+	+ anonymous
+	+ refrain
+	+ realtime_result
+	+ custom_options
 	+ options
-    + against_all_option
+	+ against_all_option
 
 + Request (application/json)
-    
-    + Headers
+	
+	+ Headers
 
-            Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
 	
 	+ Body
 
@@ -82,28 +88,28 @@ Public API
 
 + Response 201 (application/json)
 
-        {
-            "id": 123123
-        }
-            
+		{
+			"id": 123123
+		}
+			
 
 ## /votings/{id}
 
 + Headers
 
-        Authorization: Client {token}
+		Authorization: Client {token}
 
 + Parameters
 
-    + id (required) ... Voting id.
+	+ id (required) ... Voting id.
 
 ### Get voting information [GET]
 
 + Request (application/json)
-    
-    + Headers
+	
+	+ Headers
 
-            Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
 
 + Response 200 (application/json)
 
@@ -140,22 +146,54 @@ Public API
 
 + Parameters
 
-    + title (required, string) ... Voting title.
-    + link (required, string) ... Link to voting page.
-    + start_date (required, datetime)
-    + end_date (required, datetime)
-    + max_selection (required, bool)
-    + has_log (required, bool)
-    + anonymous (required, bool)
-    + refrain (required, bool)
-    + realtime_result (required, bool)
-    + custom_options (required, array)
-    + against_all_option (required, string)
+	+ title (required, string) ... Voting title.
+	+ link (required, string) ... Link to voting page.
+	+ start_date (required, datetime)
+	+ end_date (required, datetime)
+	+ max_selection (required, bool)
+	+ has_log (required, bool)
+	+ anonymous (required, bool)
+	+ refrain (required, bool)
+	+ realtime_result (required, bool)
+	+ custom_options (required, array)
+	+ against_all_option (required, string)
 
 + Request (application/json)
-    
-    + Headers
+	
+	+ Headers
 
-            Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+	
+	+ Body
+	
+			{
+				"title": "New voting",
+				"start_date": 2013-01-01T0:00:00,
+				"end_date": 2013-01-02T0:00:00,
+				"max_selection": 1,
+				"has_log": false,
+				"anonymous": false,
+				"refrain": false,
+				"realtime_result": false,
+				"custom_options": false,
+				"options": ["Option #1", "Option #2"],
+				"against_all_option": "Against all!",
+			}
 
 + Response 200
+
+<a name="Votes"></a>
+# 2. Votes
+
+## /votes
+
++ Headers
+
+			Authorization: Owner {owner_token}
+
+### Add vote [POST]
+
++ Parameters
+
+	+ voting_id
+	+ option_id
