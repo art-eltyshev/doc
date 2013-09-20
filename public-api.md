@@ -1,15 +1,27 @@
 HOST: https://api.edemos.org
 
 # edemos public API
-1. [Information](#)
-2. [Content](#)
-	1. [Get news](#)
-	2. [Get news count](#)
-	3. [Get banner](#)
-3. [Votings](#)
-4. [Votes](#)
-5. [Apps](#)
-6. [Profile](#)
+1. [Information](#1-information)
+2. [Content](#2-content)
+  1. [Get news](#21-get-news-get-news) `GET /news`
+  2. [Get news count](#22-get-news-count-get-newscount) `GET /news/count`
+  3. [Get banner](#23-get-banner-get-banner) `GET /banner`
+3. [Votings](#3-votings)
+  1. [Get votings](#31-get-votings-get-votings) `GET /votings`
+  2. [Create voting](#32-create-voting-post-votings) `POST /votings`
+  3. [Get voting](#33-get-voting-get-votingsid) `GET /votings/{id}`
+  4. [Edit voting](#34-edit-voting-put-votingsid) `PUT /votings/{id}`
+  5. [Delete voting](#35-delete-voting-delete-votingsid) `DELETE /votings/{id}`
+4. [Votes](#4-votes)
+  1. [Create user vote](#41-create-user-vote-post-votes) `POST /votes`
+  2. [Get user votes](#42-get-user-votes-get-votes) `GET /votes`
+  3. [Get user votes count](#43-get-user-votes-count-get-votescount) `GET /votes/count`
+  4. [Get user vote](#44-get-user-vote-get-votesid) `GET /votes/{id}`
+5. [Apps](#5-apps)
+  1. [Create app](#51-create-app-post-apps) `POST /apps`
+6. [Profile](#6-profile)
+  1. [Create profile](#61-create-profile-post-profile) `POST /profile`
+  2. [Get profile](#62-get-profile-get-profile) `GET /profile`
 
 ## 1. Information
 *work in progress...*
