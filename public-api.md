@@ -1,37 +1,38 @@
 HOST: https://api.edemos.org
 
 # edemos public API
-Public API
+1. [Information](#)
+2. [Content](#)
+	1. [Get news](#)
+	2. [Get news count](#)
+	3. [Get banner](#)
+3. [Votings](#)
+4. [Votes](#)
+5. [Apps](#)
+6. [Profile](#)
 
-## Contents
-1. [Content](#1-content)
-	1. [Retrieve news](#Content-GetNews)
-	2. [Retrieve news count](#Content-GetNewsCount)
-1. [Votings](#2-votings)
-2. [Votes](#3-votes)
-3. [Apps](#4-apps)
+## 1. Information
+*work in progress...*
 
-# 1. Content
+## 2. Content
 Resources for retrieving edemos content
 
-### 1.1. GET /news
-Returns project news
+### 2.1. Get news `GET /news`
 
 **Headers:**
-* ```Authorization: Client {client_token}```
+* `Authorization: Client {client_token}`
 
 **Parameters:**
-* ```limit``` = 2
-* ```offset``` = 0
+* `limit` ( *optional*, *number*, *default=2* )
+* `offset` ( *optional*, *number*, *default=0* )
 
 **Request:**
 ```http
-GET /news HTTP/1.1
+GET /news?limit=1 HTTP/1.1
 Authorization: Client 1q2w3e4r5t6y7u8i9o0p
 ```
 
-
-**Response**
+**Response:**
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -49,224 +50,251 @@ Content-Type: application/json
 }
 ```
 
-### 1.2. GET /news/count
-Retrieve news count
+### 2.2. Get news count `GET /news/count`
 
-**Request**
+**Headers:**
+* `Authorization: Client {client_token}`
 
-* Headers
+**Request:**
+```http
+GET /news/count HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+```
 
-		Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-**Response** 200 (application/json)
-```javascript
 {
-	"count": 12
+	"count": 1
 }
 ```
 
-### 1.3 GET /banner
-Returns current banner
+### 2.3. Get banner `GET /banner`
 
-**Request**
+**Headers:**
+* `Authorization: Client {client_token}`
 
-* Headers
+**Request:**
+```http
+GET /news/count HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+```
 
-		Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-**Response** 200 (application/json)
-```javascript
 {
 	"text": "Test banner",
 	"image": "1.jpeg"
 }
 ```
 
-<a name="Votings"></a>
-# 2. Votings
+## 3. Votings
 
-## /votings
+### 3.1. Get votings `GET /votings`
 
-+ Headers
+**Headers:**
+* `Authorization: Client {client_token}`
 
-		Authorization: Client {client_token}
+**Parameters:**
+* `limit` ( *optional*, *number*, *default=5* )
+* `offset` ( *optional*, *number*, *default=0* )
 
-### Retrieve votings [GET]
+**Request:**
+```http
+GET /votings HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+```
 
-+ Parameters
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-	+ offset = '0' (optional, number) ... The offset from beginning (the newest votings).
-	+ limit = '5' (optional, number) ... The maximum number of results to return.
-
-+ Request
-	
-	+ Headers
-
-			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
-
-+ Response 200 (application/json)
-
+{
+	"count": 2,
+	"votings":[
 		{
-			"count": 2,
-			"votings":[
-				{
-					"id": 12321,
-					"title": "Выборы Перзидента РФ"
-				},
-				{
-					"id": 12322,
-					"title": "Выборы в КС"
-				}
-				]
-		}
-
-### Create new voting [POST]
-
-+ Parameters
-
-	+ title (required, string) ... Voting title.
-	+ link (required, string) ... Link to voting page.
-	+ start_date
-	+ end_date
-	+ max_selection
-	+ has_log
-	+ anonymous
-	+ refrain
-	+ realtime_result
-	+ custom_options
-	+ options
-	+ against_all_option
-
-+ Request (application/json)
-	
-	+ Headers
-
-			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
-	
-	+ Body
-
-			{
-				"title": "New voting",
-				"start_date": 2013-01-01T0:00:00,
-				"end_date": 2013-01-02T0:00:00,
-				"max_selection": 1,
-				"has_log": false,
-				"anonymous": false,
-				"refrain": false,
-				"realtime_result": false,
-				"custom_options": false,
-				"options": ["Option #1", "Option #2"],
-				"against_all_option": "Against all!",
-			}
-
-+ Response 201 (application/json)
-
+			"id": 12321,
+			"title": "Voting for president"
+		},
 		{
-			"id": 123123
+			"id": 12322,
+			"title": "Test voting"
 		}
-			
+	]
+}
+```
 
-## /votings/{id}
+### 3.2. Create voting `POST /votings`
 
-+ Headers
+**Headers:**
+* `Authorization: Client {client_token}`
+* `Content-Type: application/json`
 
-		Authorization: Client {token}
+**Parameters:**
+* `title` ( *required*, *string* ) - Voting title.
+* `link` ( *required*, *string* ) - Link to the voting page.
+* `start_date`
+* `end_date`
+* `max_selection`
+* `has_log`
+* `anonymous`
+* `refrain`
+* `realtime_result`
+* `custom_options`
+* `options`
+* `against_all_option`
 
-+ Parameters
+**Request:**
+```http
+POST /votings HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+Content-Type: application/json
 
-	+ id (required) ... Voting id.
+{
+	"title": "New voting",
+	"start_date": 2013-01-01T0:00:00,
+	"end_date": 2013-01-02T0:00:00,
+	"max_selection": 1,
+	"has_log": false,
+	"anonymous": false,
+	"refrain": false,
+	"realtime_result": false,
+	"custom_options": false,
+	"options": ["Option #1", "Option #2"],
+	"against_all_option": "Against all!",
+}
+```
 
-### Get voting information [GET]
+**Response**
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
 
-+ Request (application/json)
-	
-	+ Headers
+{
+	"id": 123123
+}
+```
 
-			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+### 3.3. Get voting `GET /votings/{id}`
 
-+ Response 200 (application/json)
+**Headers:**
+* `Authorization: Client {client_token}`
 
+**Parameters:**
+* `id` ( *required*, *string* ) - Voting id
+
+**Request:**
+```http
+GET /votings/123456 HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"title": "New voting",
+	"creation_date": 2012-12-31T8:00:00,
+	"start_date": 2013-01-01T0:00:00,
+	"end_date": 2013-01-02T0:00:00,
+	"state": "finished",
+	"max_selection": 1,
+	"has_log": false,
+	"anonymous": false,
+	"refrain": false,
+	"realtime_result": false,
+	"custom_options": false,
+	"options": [
 		{
-			"title": "New voting",
-			"creation_date": 2012-12-31T8:00:00,
-			"start_date": 2013-01-01T0:00:00,
-			"end_date": 2013-01-02T0:00:00,
-			"state": "finished",
-			"max_selection": 1,
-			"has_log": false,
-			"anonymous": false,
-			"refrain": false,
-			"realtime_result": false,
-			"custom_options": false,
-			"options": [
-				{
-					"id": 1,
-					"title": "Option #1"
-				},
-				{
-					"id": 2,
-					"title": "Option #2"
-				},
-				{
-					"id": 3,
-					"title": "Against all!"
-				}
-			],
-			"against_all_option_id": 3,
+			"id": 1,
+			"title": "Option #1"
+		},
+		{
+			"id": 2,
+			"title": "Option #2"
+		},
+		{
+			"id": 3,
+			"title": "Against all!"
 		}
+	],
+	"against_all_option_id": 3,
+}
+```
 
-### Edit voting [POST]
+### 3.4. Edit voting `PUT /votings/{id}`
 
-+ Parameters
+**Headers:**
+* `Authorization: Client {client_token}`
+* `Content-Type: application/json`
 
-	+ title (required, string) ... Voting title.
-	+ link (required, string) ... Link to voting page.
-	+ start_date (required, datetime)
-	+ end_date (required, datetime)
-	+ max_selection (required, bool)
-	+ has_log (required, bool)
-	+ anonymous (required, bool)
-	+ refrain (required, bool)
-	+ realtime_result (required, bool)
-	+ custom_options (required, array)
-	+ against_all_option (required, string)
+**Parameters:**
+* `title` ( *optional*, *string* ) - Voting title.
+* `link` ( *optional*, *string* ) - Link to the voting page.
+* `start_date`
+* `end_date`
+* `max_selection`
+* `has_log`
+* `anonymous`
+* `refrain`
+* `realtime_result`
+* `custom_options`
+* `options`
+* `against_all_option`
 
-+ Request (application/json)
-	
-	+ Headers
+**Request:**
+```http
+PUT /votings/123456 HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+Content-Type: application/json
 
-			Authorization: Client 1q2w3e4r5t6y7u8i9o0p
-	
-	+ Body
-	
-			{
-				"title": "New voting",
-				"start_date": 2013-01-01T0:00:00,
-				"end_date": 2013-01-02T0:00:00,
-				"max_selection": 1,
-				"has_log": false,
-				"anonymous": false,
-				"refrain": false,
-				"realtime_result": false,
-				"custom_options": false,
-				"options": ["Option #1", "Option #2"],
-				"against_all_option": "Against all!",
-			}
+{
+	"title": "New voting",
+	"start_date": 2013-01-01T0:00:00,
+	"end_date": 2013-01-02T0:00:00,
+	"max_selection": 1,
+	"has_log": false,
+	"anonymous": false,
+	"refrain": false,
+	"realtime_result": false,
+	"custom_options": false,
+	"options": ["Option #1", "Option #2"],
+	"against_all_option": "Against all!",
+}
+```
 
-+ Response 200
+**Response**
+```http
+HTTP/1.1 200 OK
+```
 
-<a name="Votes"></a>
-# 3. Votes
+### 3.5. Delete voting `DELETE /votings/{id}`
 
-## /votes
+**Headers:**
+* `Authorization: Client {client_token}`
 
-+ Headers
+**Parameters:**
+* `id` ( *required*, *string* ) - Voting id
 
-			Authorization: Owner {owner_token}
+**Request:**
+```http
+DELETE /votings/123456 HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+```
 
-### Add vote [POST]
+**Response**
+```http
+HTTP/1.1 200 OK
+```
 
-+ Parameters
-
-	+ voting_id
-	+ option_id
+## 4. Votes
+## 5. Apps
+## 6. Profile

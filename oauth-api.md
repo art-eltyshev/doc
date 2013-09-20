@@ -1,9 +1,6 @@
 HOST: https://oauth.edemos.org
 
 # edemos OAuth API
-OAuth API
-
-## Contents
 1. [Information](#1-information)
 2. [App authorization](#2-app-authorization)
 3. [User authorization](#3-user-authorization)
