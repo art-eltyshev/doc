@@ -296,5 +296,49 @@ HTTP/1.1 200 OK
 ```
 
 ## 4. Votes
+
+### 4.1. Create user vote `POST /votes`
+
+**Headers:**
+* `Authorization: Client {owner_token}`
+* `Content-Type: application/json`
+
+**Parameters:**
+* `voting_id` ( *required*, *string* ) - Voting id
+* `options` ( *required*, *array* of *string* ) - Array of voted options ids
+* `custom_option` ( *not used* )
+
+**Request:**
+```http
+POST /votes HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+Content-Type: application/json
+
+{
+	"voting_id": "123456",
+	"options": ["123", "321"]
+}
+```
+
+**Response**
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+	"id": 123123
+}
+```
+
+### 4.2. Get user votes `GET /votes`
+### 4.3. Get user votes count `GET /votes/count`
+### 4.4. Get user vote `GET /votes/{id}`
+
 ## 5. Apps
+
+### 5.1. Create app `POST /apps`
+
 ## 6. Profile
+
+### 6.1. Create profile `POST /profile`
+### 6.2. Get profile `GET /profile`
