@@ -1,16 +1,89 @@
-FORMAT: X-1A
 HOST: https://api.edemos.org
 
 # edemos public API
 Public API
 
 ## Contents
-1. [Votings](#Votings)
-2. [Votes](#Votes)
-3. [Apps](#Apps)
+1. [Content](#1-content)
+	1. [Retrieve news](#Content-GetNews)
+	2. [Retrieve news count](#Content-GetNewsCount)
+1. [Votings](#2-votings)
+2. [Votes](#3-votes)
+3. [Apps](#4-apps)
+
+# 1. Content
+Resources for retrieving edemos content
+
+### 1.1. GET /news
+Returns project news
+
+**Headers:**
+* ```Authorization: Client {client_token}```
+
+**Parameters:**
+* ```limit``` = 2
+* ```offset``` = 0
+
+**Request:**
+```http
+GET /news HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+```
+
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"news": [
+		{
+			"date": 2013-01-02T8:00:00,
+			"title": "Breaking news!",
+			"text": "Something happends",
+			"image": "1.jpeg"
+		}
+	],
+	"count": 1
+}
+```
+
+### 1.2. GET /news/count
+Retrieve news count
+
+**Request**
+
+* Headers
+
+		Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+
+**Response** 200 (application/json)
+```javascript
+{
+	"count": 12
+}
+```
+
+### 1.3 GET /banner
+Returns current banner
+
+**Request**
+
+* Headers
+
+		Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+
+**Response** 200 (application/json)
+```javascript
+{
+	"text": "Test banner",
+	"image": "1.jpeg"
+}
+```
 
 <a name="Votings"></a>
-# 1. Votings
+# 2. Votings
 
 ## /votings
 
@@ -183,7 +256,7 @@ Public API
 + Response 200
 
 <a name="Votes"></a>
-# 2. Votes
+# 3. Votes
 
 ## /votes
 
