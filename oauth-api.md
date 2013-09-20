@@ -4,16 +4,18 @@ HOST: https://oauth.edemos.org
 OAuth API
 
 ## Contents
-1. [Content](#1-content)
-	1. [Retrieve news](#Content-GetNews)
-	2. [Retrieve news count](#Content-GetNewsCount)
-1. [Votings](#2-votings)
-2. [Votes](#3-votes)
-3. [Apps](#4-apps)
+1. [Information](#1-information)
+2. [App authorization](#2-app-authorization)
+3. [User authorization](#)
+  1. [Common access grant](#)
+  2. [Simplified access grant](#)
 
-## 1. Retrieving client token
+## 1. Information
 
-### GET /token
+## 2. App authorization
+Retrieving client access token:
+
+**URL:** ```GET /token```
 
 **Parameters:**
 * ```grant_type = client_credentials```
@@ -39,8 +41,6 @@ Content-Type: application/json
 	"expires_in": 43000
 }
 ```
-
-## 2. Retrieving auth code
-## 3. Retrieving owner token
-
-### Get token POST /token
+## 3. User authorization
+### 3.1. Common access grant
+### 3.2. Simplified access grant
