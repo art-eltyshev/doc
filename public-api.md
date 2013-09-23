@@ -13,15 +13,17 @@ HOST: https://api.edemos.org
   4. [Edit voting](#34-edit-voting-put-votingsid) `PUT /votings/{id}`
   5. [Delete voting](#35-delete-voting-delete-votingsid) `DELETE /votings/{id}`
 4. [Votes](#4-votes)
-  1. [Create user vote](#41-create-user-vote-post-votes) `POST /votes`
-  2. [Get user votes](#42-get-user-votes-get-votes) `GET /votes`
-  3. [Get user votes count](#43-get-user-votes-count-get-votescount) `GET /votes/count`
+  1. [Get user votes](#41-get-user-votes-get-votes) `GET /votes`
+  2. [Get user votes count](#42-get-user-votes-count-get-votescount) `GET /votes/count`
+  3. [Create user vote](#43-create-user-vote-post-votes) `POST /votes`
   4. [Get user vote](#44-get-user-vote-get-votesid) `GET /votes/{id}`
 5. [Apps](#5-apps)
-  1. [Create app](#51-create-app-post-apps) `POST /apps`
+  1. [Get apps](#51-get-apps) `GET /apps`
+  2. [Get apps count](#51-get-apps-count) `GET /apps/count`
+  3. [Create app](#53-create-app-post-apps) `POST /apps`
 6. [Profile](#6-profile)
-  1. [Create profile](#61-create-profile-post-profile) `POST /profile`
-  2. [Get profile](#62-get-profile-get-profile) `GET /profile`
+  1. [Get profile](#61-get-profile-get-profile) `GET /profile`
+  2. [Create profile](#62-create-profile-post-profile) `POST /profile`
 
 ## 1. Information
 *work in progress...*
@@ -309,7 +311,9 @@ HTTP/1.1 200 OK
 
 ## 4. Votes
 
-### 4.1. Create user vote `POST /votes`
+### 4.1. Get user votes `GET /votes`
+### 4.2. Get user votes count `GET /votes/count`
+### 4.3. Create user vote `POST /votes`
 
 **Headers:**
 * `Authorization: Client {owner_token}`
@@ -342,15 +346,48 @@ Content-Type: application/json
 }
 ```
 
-### 4.2. Get user votes `GET /votes`
-### 4.3. Get user votes count `GET /votes/count`
 ### 4.4. Get user vote `GET /votes/{id}`
 
 ## 5. Apps
 
-### 5.1. Create app `POST /apps`
+### 5.1. Get apps `GET /apps`
+### 5.2. Get apps count `GET /apps/count`
+### 5.3. Create app `POST /apps`
+
+**Headers:**
+* `Authorization: Client {client_token}`
+* `Content-Type: application/json`
+
+**Parameters:**
+* `title` ( *required*, *string* )
+* `url` ( *required*, *string* )
+* `redirect_uri` ( *required*, *string* ) - Redirect uri for OAuth access grant
+
+**Request:**
+```http
+POST /apps HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+Content-Type: application/json
+
+{
+	"title": "Democratia 2",
+	"url": "http://democratia2.ru",
+	"redirect_uri": "http://democratia2.ru/auth"
+}
+```
+
+**Response**
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+	"client_id": "123123",
+	"client_secret": "1q2w3e4r"
+}
+```
 
 ## 6. Profile
 
-### 6.1. Create profile `POST /profile`
-### 6.2. Get profile `GET /profile`
+### 6.1. Get profile `GET /profile`
+### 6.2. Create profile `POST /profile`
