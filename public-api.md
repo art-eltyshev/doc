@@ -19,13 +19,20 @@ HOST: https://api.edemos.org
   4. [Get user vote](#44-get-user-vote-get-votesid) `GET /votes/{id}`
 5. [Apps](#5-apps)
   1. [Get apps](#51-get-apps) `GET /apps`
-  2. [Get apps count](#51-get-apps-count) `GET /apps/count`
+  2. [Get apps count](#52-get-apps-count) `GET /apps/count`
   3. [Create app](#53-create-app-post-apps) `POST /apps`
 6. [Profile](#6-profile)
   1. [Get profile](#61-get-profile-get-profile) `GET /profile`
   2. [Create profile](#62-create-profile-post-profile) `POST /profile`
 
 ## 1. Information
+
+To use this API your app need **client access token** and for some resources **owner access token**. Authorize using [OAuth API](https://github.com/art-eltyshev/doc/blob/master/oauth-api.md) to get tokens.
+
+App access levels:
+* Common
+* Extended
+
 *work in progress...*
 
 ## 2. Content
