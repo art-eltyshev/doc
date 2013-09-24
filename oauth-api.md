@@ -61,6 +61,9 @@ This grant has two steps:
 
 **Method:** `POST`
 
+**Headers:**
+* `Authorization: Client {client_token}`
+
 **Parameters:**
 * `phone` ( *required*, *number* ) - user's phone number
 * `method` ( *optional*, *string* ) - method, used to send user a temporary password
@@ -68,6 +71,7 @@ This grant has two steps:
 **Request:**
 ```http
 POST /check-phone HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
 Content-Type: application/x-www-form-urlencoded
 
 phone=71234567890&method=sms
