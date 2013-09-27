@@ -80,6 +80,10 @@ phone=71234567890&method=sms
 **Response**
 ```http
 HTTP/1.1 200 OK
+
+{
+    "has_password": false
+}
 ```
 
 #### 3.2.2. Get access token
