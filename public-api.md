@@ -159,7 +159,7 @@ Content-Type: application/json
 
 **Parameters:**
 * `title` ( *required*, *string* ) - Voting title.
-* `link` ( *required*, *string* ) - Link to the voting page.
+* `url` ( *required*, *string* ) - Url of the voting page.
 * `start_date`
 * `end_date`
 * `max_selection`
@@ -179,8 +179,9 @@ Content-Type: application/json
 
 {
 	"title": "New voting",
-	"start_date": 2013-01-01T0:00:00,
-	"end_date": 2013-01-02T0:00:00,
+	"url": "http://democratia2.ru/votings/123",
+	"start_date": "2013-01-01T0:00:00",
+	"end_date": "2013-01-02T0:00:00",
 	"max_selection": 1,
 	"has_log": false,
 	"anonymous": false,
@@ -188,7 +189,7 @@ Content-Type: application/json
 	"realtime_result": false,
 	"custom_options": false,
 	"options": ["Option #1", "Option #2"],
-	"against_all_option": "Against all!",
+	"against_all_option": "Against all!"
 }
 ```
 
@@ -223,9 +224,10 @@ Content-Type: application/json
 
 {
 	"title": "New voting",
-	"creation_date": 2012-12-31T8:00:00,
-	"start_date": 2013-01-01T0:00:00,
-	"end_date": 2013-01-02T0:00:00,
+	"url": "http://democratia2.ru/votings/123",
+	"creation_date": "2012-12-31T8:00:00",
+	"start_date": "2013-01-01T0:00:00",
+	"end_date": "2013-01-02T0:00:00",
 	"state": "finished",
 	"max_selection": 1,
 	"has_log": false,
@@ -247,7 +249,7 @@ Content-Type: application/json
 			"title": "Against all!"
 		}
 	],
-	"against_all_option_id": 3,
+	"against_all_option_id": 3
 }
 ```
 
@@ -258,8 +260,8 @@ Content-Type: application/json
 * `Content-Type: application/json`
 
 **Parameters:**
-* `title` ( *optional*, *string* ) - Voting title.
-* `link` ( *optional*, *string* ) - Link to the voting page.
+* `title` ( *required*, *string* ) - Voting title.
+* `url` ( *required*, *string* ) - Link to the voting page.
 * `start_date`
 * `end_date`
 * `max_selection`
@@ -279,6 +281,7 @@ Content-Type: application/json
 
 {
 	"title": "New voting",
+	"url": "http://democratia2.ru/votings/456",
 	"start_date": 2013-01-01T0:00:00,
 	"end_date": 2013-01-02T0:00:00,
 	"max_selection": 1,
@@ -288,7 +291,7 @@ Content-Type: application/json
 	"realtime_result": false,
 	"custom_options": false,
 	"options": ["Option #1", "Option #2"],
-	"against_all_option": "Against all!",
+	"against_all_option": "Against all!"
 }
 ```
 
