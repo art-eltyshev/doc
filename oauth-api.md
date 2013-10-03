@@ -1,6 +1,4 @@
-HOST: https://oauth.edemos.org
-
-# edemos OAuth API
+# OAuth API
 1. [Information](#1-information)
 2. [App authorization](#2-app-authorization)
 3. [User authorization](#3-user-authorization)
@@ -80,10 +78,6 @@ phone=71234567890&method=sms
 **Response**
 ```http
 HTTP/1.1 200 OK
-
-{
-    "has_password": false
-}
 ```
 
 #### 3.2.2. Get access token

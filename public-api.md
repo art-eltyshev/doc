@@ -1,6 +1,4 @@
-HOST: https://api.edemos.org
-
-# edemos public API
+# public API
 1. [Information](#1-information)
 2. [Content](#2-content)
   1. [Get news](#21-get-news-get-news) `GET /news`
@@ -326,7 +324,7 @@ HTTP/1.1 200 OK
 ### 4.3. Create user vote `POST /votes`
 
 **Headers:**
-* `Authorization: Client {owner_token}`
+* `Authorization: Owner {owner_token}`
 * `Content-Type: application/json`
 
 **Parameters:**
@@ -337,7 +335,7 @@ HTTP/1.1 200 OK
 **Request:**
 ```http
 POST /votes HTTP/1.1
-Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+Authorization: Owner 1q2w3e4r5t6y7u8i9o0p
 Content-Type: application/json
 
 {
