@@ -19,7 +19,7 @@
   1. [Get apps](#51-get-apps) `GET /apps`
   2. [Get apps count](#52-get-apps-count) `GET /apps/count`
   3. [Create app](#53-create-app-post-apps) `POST /apps`
-  4. [Edit app] (#54-edit-app-put-apps-self) `PUT /apps/self`
+  4. [Edit app] (#54-edit-app-put-appsself) `PUT /apps/self`
 6. [Profile](#6-profile)
   1. [Get profile](#61-get-profile-get-profile) `GET /profile`
   2. [Create profile](#62-create-profile-post-profile) `POST /profile`
