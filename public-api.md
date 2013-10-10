@@ -19,6 +19,7 @@
   1. [Get apps](#51-get-apps) `GET /apps`
   2. [Get apps count](#52-get-apps-count) `GET /apps/count`
   3. [Create app](#53-create-app-post-apps) `POST /apps`
+  4. [Edit app] (#54-edit-app-put-apps-self) `PUT /apps/self`
 6. [Profile](#6-profile)
   1. [Get profile](#61-get-profile-get-profile) `GET /profile`
   2. [Create profile](#62-create-profile-post-profile) `POST /profile`
@@ -158,16 +159,13 @@ Content-Type: application/json
 **Parameters:**
 * `title` ( *required*, *string* ) - Voting title.
 * `url` ( *required*, *string* ) - Url of the voting page.
-* `start_date`
-* `end_date`
-* `max_selection`
-* `has_log`
-* `anonymous`
-* `refrain`
-* `realtime_result`
-* `custom_options`
-* `options`
-* `against_all_option`
+* `start_date` ( *required*, *string* )
+* `end_date` ( *required*, *string* in format %Y-%m-%dT%H:%M:%S )
+* `max_selection` ( *required*, *int* )
+* `refrain` ( *required*, *bool* )
+* `realtime_result` ( *required*, *bool* )
+* `options` ( *required*, *array* of JSON objects )
+* `against_all_option` ( *required*, *JSON object* )
 
 **Request:**
 ```http
@@ -181,13 +179,21 @@ Content-Type: application/json
 	"start_date": "2013-01-01T0:00:00",
 	"end_date": "2013-01-02T0:00:00",
 	"max_selection": 1,
-	"has_log": false,
-	"anonymous": false,
 	"refrain": false,
 	"realtime_result": false,
-	"custom_options": false,
-	"options": ["Option #1", "Option #2"],
-	"against_all_option": "Against all!"
+	"options": [
+		{
+			"title": "Option1",
+			"desc": "Option1 description"
+		},
+		{
+			"title": "Option2",
+			"desc": "Option2 description"
+		}
+	],
+	"against_all_option": {
+		"title": "Against all!"
+	}
 }
 ```
 
@@ -226,25 +232,29 @@ Content-Type: application/json
 	"creation_date": "2012-12-31T8:00:00",
 	"start_date": "2013-01-01T0:00:00",
 	"end_date": "2013-01-02T0:00:00",
-	"state": "finished",
 	"max_selection": 1,
-	"has_log": false,
-	"anonymous": false,
 	"refrain": false,
 	"realtime_result": false,
-	"custom_options": false,
 	"options": [
 		{
 			"id": 1,
-			"title": "Option #1"
+			"data": {
+				"title": "Option1",
+				"desc": "Option1 description"
+			}
 		},
 		{
 			"id": 2,
-			"title": "Option #2"
+			"data": {
+				"title": "Option2",
+				"desc": "Option2 description"
+			}
 		},
 		{
 			"id": 3,
-			"title": "Against all!"
+			"data": {
+				"title": "Against all!"
+			}
 		}
 	],
 	"against_all_option_id": 3
@@ -259,17 +269,14 @@ Content-Type: application/json
 
 **Parameters:**
 * `title` ( *required*, *string* ) - Voting title.
-* `url` ( *required*, *string* ) - Link to the voting page.
-* `start_date`
-* `end_date`
-* `max_selection`
-* `has_log`
-* `anonymous`
-* `refrain`
-* `realtime_result`
-* `custom_options`
-* `options`
-* `against_all_option`
+* `url` ( *required*, *string* ) - Url of the voting page.
+* `start_date` ( *required*, *string* )
+* `end_date` ( *required*, *string* in format %Y-%m-%dT%H:%M:%S )
+* `max_selection` ( *required*, *int* )
+* `refrain` ( *required*, *bool* )
+* `realtime_result` ( *required*, *bool* )
+* `options` ( *required*, *array* of JSON objects )
+* `against_all_option` ( *required*, *JSON object* )
 
 **Request:**
 ```http
@@ -279,17 +286,25 @@ Content-Type: application/json
 
 {
 	"title": "New voting",
-	"url": "http://democratia2.ru/votings/456",
-	"start_date": 2013-01-01T0:00:00,
-	"end_date": 2013-01-02T0:00:00,
+	"url": "http://democratia2.ru/votings/123",
+	"start_date": "2013-01-01T0:00:00",
+	"end_date": "2013-01-02T0:00:00",
 	"max_selection": 1,
-	"has_log": false,
-	"anonymous": false,
 	"refrain": false,
 	"realtime_result": false,
-	"custom_options": false,
-	"options": ["Option #1", "Option #2"],
-	"against_all_option": "Against all!"
+	"options": [
+		{
+			"title": "Option1",
+			"desc": "Option1 description"
+		},
+		{
+			"title": "Option2",
+			"desc": "Option2 description"
+		}
+	],
+	"against_all_option": {
+		"title": "Against all!"
+	}
 }
 ```
 
@@ -330,7 +345,6 @@ HTTP/1.1 200 OK
 **Parameters:**
 * `voting_id` ( *required*, *string* ) - Voting id
 * `options` ( *required*, *array* of *string* ) - Array of voted options ids
-* `custom_option` ( *not used* )
 
 **Request:**
 ```http
@@ -340,7 +354,7 @@ Content-Type: application/json
 
 {
 	"voting_id": "123456",
-	"options": ["123", "321"]
+	"options_ids": ["123", "321"]
 }
 ```
 
@@ -393,6 +407,35 @@ Content-Type: application/json
 	"client_id": "123123",
 	"client_secret": "1q2w3e4r"
 }
+```
+
+### 5.4. Edit app `PUT /apps/self`
+
+**Headers:**
+* `Authorization: Client {client_token}`
+* `Content-Type: application/json`
+
+**Parameters:**
+* `title` ( *required*, *string* )
+* `url` ( *required*, *string* )
+* `redirect_uri` ( *required*, *string* ) - Redirect uri for OAuth access grant
+
+**Request:**
+```http
+PUT /apps/self HTTP/1.1
+Authorization: Client 1q2w3e4r5t6y7u8i9o0p
+Content-Type: application/json
+
+{
+	"title": "Democratia 2",
+	"url": "http://democratia2.ru",
+	"redirect_uri": "http://democratia2.ru/auth"
+}
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
 ```
 
 ## 6. Profile
