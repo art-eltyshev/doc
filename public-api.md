@@ -2,14 +2,14 @@
 1. [Information](#1-information)
 2. [Votings](#2-votings)
   * [Get votings](#get-votings-get-votings) `GET /votings`
-  * [Get votings count](#get-votings-get-votingscount) `GET /votings/count`
+  * [Get votings count](#get-votings-count-get-votingscount) `GET /votings/count`
   * [Create voting](#create-voting-post-votings) `POST /votings`
   * [Get voting](#get-voting-get-votingsid) `GET /votings/{id}`
   * [Edit voting](#edit-voting-put-votingsid) `PUT /votings/{id}`
   * [Delete voting](#delete-voting-delete-votingsid) `DELETE /votings/{id}`
   * [Get voting options](#get-voting-options-get-votingsidoptions) `GET /votings/{id}/options`
   * [Add voting option](#add-voting-option-post-votingsidoptions) `POST /votings/{id}/options`
-  * [Edit voting option](#edit-voting-option-put-votingsidoptionsid) `PUT /votings/{id}/options/{id}`
+  * [Edit voting option](#edit-voting-option-put-votingsvoting_idoptionsoption_id) `PUT /votings/{id}/options/{id}`
   * [Delete voting option](#delete-voting-option-delete-votingsidoptionsid) `DELETE /votings/{id}/options/{id}`
   * [Get user's vote in voting](#get-users-vote-in-voting-get-votingsidvote) `GET /votings/{id}/vote`
   * [Add user's vote to voting](#add-users-vote-to-voting-post-votingsidvote) `POST /votings/{id}/vote`
@@ -379,7 +379,7 @@ Content-Type: application/json
 }
 ```
 
-### Add user's vote in voting `POST /votings/{id}/vote`
+### Add user's vote to voting `POST /votings/{id}/vote`
 
 **Headers:**
 * `Authorization: Owner {owner_token}`
