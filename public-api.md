@@ -22,6 +22,7 @@
   * [Create app](#create-app-post-apps) `POST /apps`
   * [Get app](#get-app-get-appsid) `GET /apps/{id}`
   * [Edit app] (#edit-app-put-appsid) `PUT /apps/{id}`
+  * [Delete app] (#delete-app-delete-appsid) `DELETE /apps/{id}`
 4. [Users](#4-users)
   * [Get user's info](#get-users-info-get-user) `GET /user`
   * [Edit user's info](#edit-users-info-put-user) `PUT /user`
@@ -295,7 +296,7 @@ Content-Type: application/json
 
 **Response**
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
@@ -334,7 +335,7 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 ```
 
-### Delete voting option `DELETE /votings/{id}/options/{id}`
+### Delete voting option `DELETE /votings/{voting_id}/options/{option_id}`
 
 **Headers:**
 * `Authorization: Client {client_token}`
@@ -342,8 +343,6 @@ HTTP/1.1 200 OK
 **Parameters:**
 * `voting_id` ( *required* )
 * `option_id` ( *required* )
-* `data` ( *required*, *JSON object* )
-* `against_all` ( *optional*, *boolean* )
 
 **Request:**
 ```http
@@ -402,7 +401,7 @@ Content-Type: application/json
 
 **Response**
 ```http
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 ```
 
 ### Get voting result `GET /votings/{id}/result`
@@ -524,6 +523,8 @@ Content-Type: application/json
 ### Get app `GET /apps/{id}`
 
 ### Edit app `PUT /apps/{id}`
+
+### Delete app `DELETE /apps/{id}`
 
 ## 4. Users
 
