@@ -375,6 +375,12 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+	"date": "2013-01-01T0:00:00",
+	"options": [
+		{
+			"id": 123
+		}
+	]
 }
 ```
 
@@ -395,7 +401,12 @@ Authorization: Owner 1q2w3e4r5t6y7u8i9o0p
 Content-Type: application/json
 
 [
-	123, 456
+	{
+		"id": 123
+	},
+	{
+		"id": 456
+	}
 ]
 ```
 
@@ -424,6 +435,20 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+	"total_voters": 10000,
+	"verified_voters": 6700,
+	"options": [
+		{
+			"id": 123,
+			"total_voters": 5000,
+			"verified_voters": 3000
+		},
+		{
+			"id": 456,
+			"total_voters": 5000,
+			"verified_voters": 3700
+		}
+	]
 }
 ```
 
