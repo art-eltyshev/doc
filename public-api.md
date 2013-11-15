@@ -65,11 +65,15 @@ Content-Type: application/json
 	"votings":[
 		{
 			"id": 12321,
-			"title": "Voting for president"
+			"title": "Voting for president",
+			"start_date": "2013-01-01T0:00:00",
+            "end_date": "2014-01-01T0:00:00"
 		},
 		{
 			"id": 12322,
-			"title": "Test voting"
+			"title": "Test voting",
+			"start_date": "2013-01-01T0:00:00",
+            "end_date": "2014-01-01T0:00:00"
 		}
 	]
 }
