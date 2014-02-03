@@ -1,8 +1,8 @@
 # public API
 1. [Information](#1-information)
 2. [User authorization](#2-user-authorization)
-  * [Check phone](#check-phone-user-authorization) `POST /check-phone`
-  * [Confirm](#confirm-user-authorization) `POST /confirm`
+  * [Check phone](#check-phone-post-check-phone) `POST /check-phone`
+  * [Confirm](#confirm-post-confirm) `POST /confirm`
 3. [Votings](#3-votings)
   * [Get votings](#get-votings-get-votings) `GET /votings`
   * [Get votings count](#get-votings-count-get-votingscount) `GET /votings/count`
@@ -11,10 +11,10 @@
   * [Edit voting](#edit-voting-put-votingsid) `PUT /votings/{id}`
   * [Delete voting](#delete-voting-delete-votingsid) `DELETE /votings/{id}`
   * [Get voting options](#get-voting-options-get-votingsidoptions) `GET /votings/{id}/options`
-  * [Get voting options](#get-voting-option-get-votingsidoptionsid) `GET /votings/{id}/options/{id}`
+  * [Get voting options](#get-voting-option-get-votingsvoting_idoptionsoption_id) `GET /votings/{voting_id}/options/{option_id}`
   * [Add voting option](#add-voting-option-post-votingsidoptions) `POST /votings/{id}/options`
-  * [Edit voting option](#edit-voting-option-put-votingsvoting_idoptionsoption_id) `PUT /votings/{id}/options/{id}`
-  * [Delete voting option](#delete-voting-option-delete-votingsidoptionsid) `DELETE /votings/{id}/options/{id}`
+  * [Edit voting option](#edit-voting-option-put-votingsvoting_idoptionsoptionsoption_id) `PUT /votings/{voting_id}/options/{option_id}`
+  * [Delete voting option](#delete-voting-option-delete-votingsvoting_idoptionsoption_id) `DELETE /votings/{voting_id}/options/{option_id}`
   * [Get user's vote in voting](#get-users-vote-in-voting-get-votingsidvote) `GET /votings/{id}/vote`
   * [Add user's vote to voting](#add-users-vote-to-voting-post-votingsidvote) `POST /votings/{id}/vote`
   * [Get voting result](#get-voting-result-get-votingsidresult) `GET /votings/{id}/result`
@@ -322,10 +322,10 @@ Content-Type: application/json
 			}
 		},
 		{
-			"id": 25b217f5-1c03-49c7-9901-f89c04fc7e8b,
+			"id": "25b217f5-1c03-49c7-9901-f89c04fc7e8b",
 			"data": {
 				"title": "Option #2",
-				"description": "Second option in voring",
+				"description": "Second option in voting",
 				"photo": "2.jpg"
 			}
 		},
@@ -488,12 +488,12 @@ Content-Type: application/json
 	"verified_voters": 6700,
 	"options": [
 		{
-			"id": 1aa9f854-d69a-42a3-bcbe-4be0dbacde72,
+			"id": "1aa9f854-d69a-42a3-bcbe-4be0dbacde72",
 			"total_voters": 5000,
 			"verified_voters": 3000
 		},
 		{
-			"id": 25b217f5-1c03-49c7-9901-f89c04fc7e8b,
+			"id": "25b217f5-1c03-49c7-9901-f89c04fc7e8b",
 			"total_voters": 5000,
 			"verified_voters": 3700
 		}
@@ -526,7 +526,7 @@ Content-Type: application/json
 	"date": "2013-01-01T0:00:00",
 	"options": [
 		{
-			"id": 1aa9f854-d69a-42a3-bcbe-4be0dbacde72
+			"id": "1aa9f854-d69a-42a3-bcbe-4be0dbacde72"
 		}
 	]
 }
@@ -552,10 +552,10 @@ Content-Type: application/json
 
 [
 	{
-		"id": 1aa9f854-d69a-42a3-bcbe-4be0dbacde72
+		"id": "1aa9f854-d69a-42a3-bcbe-4be0dbacde72"
 	},
 	{
-		"id": 25b217f5-1c03-49c7-9901-f89c04fc7e8b
+		"id": "25b217f5-1c03-49c7-9901-f89c04fc7e8b"
 	}
 ]
 ```
@@ -650,7 +650,7 @@ Content-Type: application/json
 
 {
 	"id": "2",
-	"api_key": "d4fa4d4f-3c2c-4287-8114-bb9112352e59"
+	"api_key": "d4fa4d4f3c2c42878114bb9112352e59"
 }
 ```
 
@@ -700,7 +700,7 @@ Content-Type: application/json
 {
 	"firstname": "Firstname",
         "middlename": "Middlename",
-        "lastname": "Lastname'],
+        "lastname": "Lastname",
         "birth_date": "1991-01-01T0:00:00",
         "email": "admin@edemos.org",
         "email_subscribed": true,
@@ -736,7 +736,7 @@ Content-Type: application/json
 {
 	"firstname": "Firstname",
         "middlename": "Middlename",
-        "lastname": "Lastname'],
+        "lastname": "Lastname",
         "birth_date": "1991-01-01T0:00:00",
         "email": "admin@edemos.org",
         "email_subscribed": true,
@@ -771,7 +771,7 @@ User-Token: bf3ffc46b57d4d08bfe2d0be307b21ae
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
+[
 	{
 		"date": "2013-01-01T0:00:00",
 		"voting":
@@ -783,7 +783,7 @@ Content-Type: application/json
 			"realtime_result": true
 		},
 		"options":
-		{
+		[
 			{
 				"id": "1aa9f854-d69a-42a3-bcbe-4be0dbacde72",
 				"data": {
@@ -793,16 +793,16 @@ Content-Type: application/json
 				}
 			},
 			{
-				"id": 25b217f5-1c03-49c7-9901-f89c04fc7e8b,
+				"id": "25b217f5-1c03-49c7-9901-f89c04fc7e8b",
 				"data": {
 					"title": "Option #2",
-					"description": "Second option in voring",
+					"description": "Second option in voting",
 					"photo": "2.jpg"
 				}
 			}
-		}
+		]
 	}
-}
+]
 ```
 
 
