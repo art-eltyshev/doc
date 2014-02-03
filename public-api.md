@@ -11,7 +11,7 @@
   * [Edit voting](#edit-voting-put-votingsid) `PUT /votings/{id}`
   * [Delete voting](#delete-voting-delete-votingsid) `DELETE /votings/{id}`
   * [Get voting options](#get-voting-options-get-votingsidoptions) `GET /votings/{id}/options`
-  * [Get voting options](#get-voting-option-get-votingsvoting_idoptionsoption_id) `GET /votings/{voting_id}/options/{option_id}`
+  * [Get voting option](#get-voting-option-get-votingsvoting_idoptionsoption_id) `GET /votings/{voting_id}/options/{option_id}`
   * [Add voting option](#add-voting-option-post-votingsidoptions) `POST /votings/{id}/options`
   * [Edit voting option](#edit-voting-option-put-votingsvoting_idoptionsoptionsoption_id) `PUT /votings/{voting_id}/options/{option_id}`
   * [Delete voting option](#delete-voting-option-delete-votingsvoting_idoptionsoption_id) `DELETE /votings/{voting_id}/options/{option_id}`
@@ -31,6 +31,11 @@
   * [Get user's info](#get-users-info-get-user) `GET /user`
   * [Edit user's info](#edit-users-info-put-user) `PUT /user`
   * [Get user's votes](#get-users-votes-get-uservotes) `GET /user/votes`
+6. [Requests](#6-requests)
+  * [Get requests](#get-requests-get-requests) `GET /requests`
+  * [Get request by phone](#get-request-by-phone-get-requestsphone) `GET /requests/{phone}`
+  * [Create request](#create-request-post-requests) `POST /requests`
+  * [Delete request](#delete-request-delete-requestsphone) `DELETE /requests/{phone}`
 
 ## 1. Information
 
@@ -827,4 +832,118 @@ Content-Type: application/json
 {
 	"count": 1
 }
+```
+
+## 6. Requests
+
+### Get requests `GET /requests`
+
+**Headers:**
+* `Api-Key: {api_key}`
+
+**Request:**
+```http
+GET /requests HTTP/1.1
+Api-Key: 550e8400e29b41d4a716446655440000
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+	{
+		"phone": "79999999999",
+		"email": "admin@edemos.org",
+		"name": "Firstname Lastname",
+		"message": "User message",
+		"app_name": "Voting platform",
+		"app_url": "platform"
+	}
+]
+```
+
+### Get request by phone `GET /requests/{phone}`
+
+**Headers:**
+* `Api-Key: {api_key}`
+
+**Parameters:**
+* `phone` ( *required*, *string* )
+
+**Request:**
+```http
+GET /requests/79999999999 HTTP/1.1
+Api-Key: 550e8400e29b41d4a716446655440000
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"phone": "79999999999",
+	"email": "admin@edemos.org",
+	"name": "Firstname Lastname",
+	"message": "User message",
+	"app_name": "Voting platform",
+	"app_url": "platform"
+}
+```
+
+### Create request `POST /requests`
+
+**Headers:**
+* `Api-Key: {api_key}`
+* `Content-Type: application/json`
+
+**Parameters:**
+* `phone` ( *required*, *string* )
+* `email` ( *required*, *string* )
+* `name` ( *required*, *string* )
+* `message` ( *required*, *string* )
+* `app_name` ( *required*, *string* )
+* `app_url` ( *required*, *string* )
+
+**Request:**
+```http
+POST /requests/79999999999 HTTP/1.1
+Api-Key: 550e8400e29b41d4a716446655440000
+Content-Type: application/json
+
+{
+	"phone": "79999999999",
+	"email": "admin@edemos.org",
+	"name": "Firstname Lastname",
+	"message": "User message",
+	"app_name": "Voting platform",
+	"app_url": "platform"
+}
+```
+
+**Response**
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+```
+
+### Delete request `DELETE /requests/{phone}`
+
+**Headers:**
+* `Api-Key: {api_key}`
+
+**Parameters:**
+* `phone` ( *required*, *string* )
+
+**Request:**
+```http
+DELETE /requests/79999999999 HTTP/1.1
+Api-Key: 550e8400e29b41d4a716446655440000
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
 ```
